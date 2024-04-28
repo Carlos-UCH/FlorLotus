@@ -18,5 +18,15 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0 ,1);
+
+         if(health <= 0){
+
+        GetComponent<player_controller>().enabled = false; 
+        Destroy(gameObject, 1.0f);
+        }
+
+
+
     }
+
 }

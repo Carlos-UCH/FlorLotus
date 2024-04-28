@@ -1,0 +1,4 @@
+repository "DS FLOR DE LOTUS@Arthor5@cloud"
+  path "/"
+    br "/main"
+    co "/main"

@@ -6,7 +6,7 @@ public class Monster1_Damage : MonoBehaviour
 {
 
     public HealthBar vida;
-    public float damage;
+    public float damage = 25;
     // Start is called before the first frame update
 
     private void OnCollisionEnter2D(Collision2D other){
@@ -14,6 +14,7 @@ public class Monster1_Damage : MonoBehaviour
         if(other.gameObject.CompareTag("Player")){
    
             other.gameObject.GetComponent<HealthBar>().health -= damage;
-        }
+
     }
+}
 }
