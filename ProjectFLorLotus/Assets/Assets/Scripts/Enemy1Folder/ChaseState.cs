@@ -19,7 +19,7 @@ public class ChaseState : IEnemyState
         throw new System.NotImplementedException();
     }
 
-    public void update()
+    public void UpdateState()
     {
         throw new System.NotImplementedException();
     }
