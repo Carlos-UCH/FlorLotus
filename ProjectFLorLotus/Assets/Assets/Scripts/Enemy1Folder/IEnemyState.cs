@@ -6,6 +6,6 @@ public interface IEnemyState
 {
     void StartState();
     void EndState();
-    void update();
+    void Update();
     void FixedUpdate();
 }

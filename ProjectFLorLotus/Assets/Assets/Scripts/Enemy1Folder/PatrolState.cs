@@ -1,9 +1,20 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PatrolState : IEnemyState
 {
+    [SerializeField]
+    float speed; 
+
+     [SerializeField]
+    float range; 
+
+     [SerializeField]
+
+     Vector2 wayPoint;
+
+    float maxDistance;
     public void EndState()
     {
         throw new System.NotImplementedException();
@@ -16,11 +27,16 @@ public class PatrolState : IEnemyState
 
     public void StartState()
     {
-        throw new System.NotImplementedException();
+        SetNewDestination();
     }
 
-    public void update()
+    public void Update()
     {
-        throw new System.NotImplementedException();
+       
+       
+    }
+
+    void SetNewDestination(){
+        wayPoint = new Vector2(Random.Range(-maxDistance, maxDistance), Random.Range(-maxDistance, maxDistance));
     }
 }

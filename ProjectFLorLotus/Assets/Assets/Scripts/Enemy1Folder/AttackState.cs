@@ -19,7 +19,7 @@ public class AttackState : IEnemyState
         throw new System.NotImplementedException();
     }
 
-    public void update()
+    public void Update()
     {
         throw new System.NotImplementedException();
     }
