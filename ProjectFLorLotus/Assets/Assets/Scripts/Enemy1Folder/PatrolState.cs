@@ -10,7 +10,7 @@ public class PatrolState : IEnemyState
      [SerializeField]
     float range; 
 
-     [SerializeField]
+  
 
      Vector2 wayPoint;
 
