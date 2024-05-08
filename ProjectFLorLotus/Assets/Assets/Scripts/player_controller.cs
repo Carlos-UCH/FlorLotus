@@ -15,6 +15,9 @@ public class player_controller : MonoBehaviour
 
     private Vector2 _playerDirection;
 
+    private int collcheck ;
+    private InventoryManager inventoryManager;
+
 
     void Start()
     {
@@ -45,8 +48,12 @@ public class player_controller : MonoBehaviour
 
         }
 
+
+       
+
         playerRun();
     
+
     }
 
     void FixedUpdate()
@@ -96,6 +103,16 @@ public class player_controller : MonoBehaviour
     }
 
 
+  
+
+
+
+
+
 }
+
+
+
+
 
 

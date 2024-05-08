@@ -17,6 +17,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public string itemDescription;
     public Sprite emptySprite;
     
+    
     [SerializeField]
     private int maxNumberOfItems;
 

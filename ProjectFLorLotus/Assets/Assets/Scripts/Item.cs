@@ -25,7 +25,6 @@ public class Item : MonoBehaviour
 
    
    
-   
        void Start()
     {
         
@@ -35,12 +34,17 @@ public class Item : MonoBehaviour
     }
 
 
+    
+
+    private Collision2D collision1;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" )
         {
+
+
             int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
             if (leftOverItems <= 0)
             {
@@ -51,8 +55,10 @@ public class Item : MonoBehaviour
                 quantity = leftOverItems;
             }
 
-        }
+
     }
 
+
+}
 
 }
