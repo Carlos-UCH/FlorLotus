@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -8,22 +6,19 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IPointerClickHandler
 {
-   
-   //======ITEM DATA ======//
+    //======ITEM DATA ======//
     public string itemName;
     public int quantity;
     public Sprite itemSprite;
-    public bool isFull;
     public string itemDescription;
     public Sprite emptySprite;
-    
-    
+
+
     [SerializeField]
-    private int maxNumberOfItems;
+    private int maxNumberOfItems = 9;
 
-    
-   //======ITEM SLOT ======//
 
+    //======ITEM SLOT ======//
     [SerializeField]
     private TMP_Text quantityText;
 
@@ -34,87 +29,63 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public bool thisItemSelected;
     private InventoryManager inventoryManager;
 
-   //======ITEM DESCRIPTION SLOT ======//
+    //======ITEM DESCRIPTION SLOT ======//
     public Image itemDescriptionImage;
     public TMP_Text ItemDescriptionNameText;
     public TMP_Text ItemDescriptionText;
 
-
-
-
     private void Start()
     {
-        
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
-
     }
 
-    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
+    public int AddItem(string itemName, int quantityToAdd, Sprite itemSprite, string itemDescription)
     {
-        //Check if Inv Full
+        int remainingQuantity = 0;
 
-        if (isFull){
-            return quantity;
-        }
-        //update Name
-        this.itemName = itemName;
-
-        
-
-        //update Image
-        this.itemSprite = itemSprite;
-        itemImage.sprite = itemSprite;
-
-        //update Description
-        this.itemDescription = itemDescription;
-
-        //update quantity
-        this.quantity += quantity;
-
-        if (this.quantity >= maxNumberOfItems)
+        if (IsFull())
         {
-            quantityText.text = maxNumberOfItems.ToString();
+            remainingQuantity = quantityToAdd;
+        }
+        else
+        {
+            this.itemName = itemName;
+            this.itemSprite = itemSprite;
+            this.itemImage.sprite = itemSprite;
+            this.itemDescription = itemDescription;
+
+            this.quantity += quantityToAdd;
+
+            if (this.quantity > maxNumberOfItems)
+            {
+                this.quantity = maxNumberOfItems;
+                remainingQuantity = quantityToAdd - maxNumberOfItems;
+            }
+
+            quantityText.text = this.quantity.ToString();
             quantityText.enabled = true;
-            isFull = true;
-        
+        }
 
-        //Retorno dos q N Foram
-        int extraItems = this.quantity - maxNumberOfItems;
-        this.quantity = maxNumberOfItems;
-        return extraItems;
-}   
-    
-        //Att Quantity TXT
-        quantityText.text = this.quantity.ToString();
-        quantityText.enabled = true;
-
-        return 0;
-
-      
-
-
+        return remainingQuantity;
     }
+
 
 
     public void OnPointerClick(PointerEventData eventData)
     {
-
-        if(eventData.button == PointerEventData.InputButton.Left)
+        switch (eventData.button)
         {
-            OnLeftClick();
-
-        }
-        
-        if(eventData.button == PointerEventData.InputButton.Right)
-        {
-            OnRightClick();
-
+            case PointerEventData.InputButton.Left:
+                OnLeftClick();
+                break;
+            case PointerEventData.InputButton.Right:
+                OnRightClick();
+                break;
         }
     }
 
     public void OnLeftClick()
     {
-
         inventoryManager.DeselectAllSlots();
         selectedShader.SetActive(true);
         thisItemSelected = true;
@@ -125,28 +96,22 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         {
             itemDescriptionImage.sprite = emptySprite;
         }
-        
     }
 
-    private void  EmptySlot()
+    private void EmptySlot()
     {
-
         quantityText.enabled = false;
         itemImage.sprite = emptySprite;
 
         ItemDescriptionNameText.text = "";
         ItemDescriptionText.text = "";
         itemDescriptionImage.sprite = emptySprite;
-
-
-
     }
 
 
 
     public void OnRightClick()
     {
-
         //Create New Item
         GameObject itemToDrop = new GameObject(itemName);
         Item newItem = itemToDrop.AddComponent<Item>();
@@ -160,15 +125,12 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         sr.sprite = itemSprite;
         sr.sortingOrder = 10;
 
-    
-
         //Add a Collider
         itemToDrop.AddComponent<BoxCollider2D>();
 
-
         //Set the Location
-        itemToDrop.transform.position = GameObject.FindWithTag("Player").transform.position + new Vector3(1,0,0);
-        itemToDrop.transform.localScale = new Vector3 (7,7,7);
+        itemToDrop.transform.position = GameObject.FindWithTag("Player").transform.position + new Vector3(1, 0, 0);
+        itemToDrop.transform.localScale = new Vector3(7, 7, 7);
 
         this.quantity -= 1;
         quantityText.text = this.quantity.ToString();
@@ -176,8 +138,10 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         {
             EmptySlot();
         }
-
     }
 
-
+    public bool IsFull()
+    {
+        return this.quantity >= this.maxNumberOfItems;
+    }
 }
