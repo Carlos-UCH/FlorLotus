@@ -1,50 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-   
-   [SerializeField]
-   public string itemName;
-   
-   [SerializeField]
-   public int quantity;
+    public string itemName;
 
-   [SerializeField]
-   public Sprite sprite;
+    public int quantity;
 
+    public Sprite sprite;
 
     [TextArea]
-    [SerializeField]
-   public string itemDescription;
+    public string itemDescription;
 
+    private InventoryManager inventoryManager;
 
-
-   private InventoryManager inventoryManager;
-
-   
-   
-       void Start()
+    void Start()
     {
-        
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
-
-
     }
-
-
-    
-
-    private Collision2D collision1;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        if (collision.gameObject.tag == "Player" )
+        if (collision.gameObject.CompareTag("Player"))
         {
-
-
             int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
             if (leftOverItems <= 0)
             {
@@ -54,11 +32,6 @@ public class Item : MonoBehaviour
             {
                 quantity = leftOverItems;
             }
-
-
+        }
     }
-
-
-}
-
 }
