@@ -11,6 +11,8 @@ public class PlayerSwitch : MonoBehaviour
     public CinemachineVirtualCamera[] cameras;
     public CinemachineVirtualCamera MainCamera;
     public CinemachineVirtualCamera player2Camera;
+    public CinemachineVirtualCamera player3Camera;
+
     public CinemachineVirtualCamera startingCamera;
     private CinemachineVirtualCamera currrentCam;
     
@@ -18,12 +20,17 @@ public class PlayerSwitch : MonoBehaviour
 
     public player_controller playerController;
     public player_controller player2Controller;
+     public player_controller player3Controller;
+     
+    private bool ver = false;
 
 
 
     void Start()
     {
         player2Controller.enabled = false;
+        player3Controller.enabled = false;
+
         currrentCam = startingCamera;
 
         for (int i = 0; i <cameras.Length; i ++)
@@ -51,6 +58,13 @@ public class PlayerSwitch : MonoBehaviour
         {
             SwitchPlayer();
         }
+
+        if (Input.GetKeyDown(KeyCode.CapsLock))
+        {
+            ver = true;
+
+            SwitchPlayer();
+        }
     }
 
 
@@ -74,17 +88,30 @@ public class PlayerSwitch : MonoBehaviour
     {
 
 
-        if (playerController.enabled)
+        if (ver && player3Controller.enabled == false)
         {
             playerController.enabled = false;
+            player2Controller.enabled = false;
+            player3Controller.enabled = true;
+            SwitchCamera(player3Camera);
+
+        }   
+        else if (playerController.enabled &&  ver == false)
+        {    
+            playerController.enabled = false;
             player2Controller.enabled = true;
+            player3Controller.enabled = false;
+            ver = false;
             SwitchCamera(player2Camera);
         }
-        else 
+        else
         {
             playerController.enabled = true;
             player2Controller.enabled = false;
+            player3Controller.enabled = false;
+            ver = false;
             SwitchCamera(MainCamera);
+        
         }
     }
 
