@@ -29,6 +29,8 @@ namespace Enemy
         public override void PhysicsUpdate()
         {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, 4f * Time.deltaTime);
+            // look at player
+            this.gameObject.facingDirection = player.transform.position - this.gameObject.transform.position;
         }
     }
 }
