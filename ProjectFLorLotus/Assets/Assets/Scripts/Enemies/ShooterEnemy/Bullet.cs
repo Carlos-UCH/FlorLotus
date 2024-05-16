@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Drone;
 public class Bullet : MonoBehaviour
 {
     float ttl = 2f;
@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.GetComponent<HealthBar>().health -= 10;
+            other.GetComponent<CommonPlayer>().health -= 10;
             Destroy(gameObject);
         }
     }

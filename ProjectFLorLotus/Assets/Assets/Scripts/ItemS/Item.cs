@@ -19,10 +19,13 @@ public class Item : MonoBehaviour
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+
+            if (Input.GetKey(KeyCode.C))
+            {
             int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
             if (leftOverItems <= 0)
             {
@@ -31,6 +34,7 @@ public class Item : MonoBehaviour
             else
             {
                 quantity = leftOverItems;
+            }
             }
         }
     }

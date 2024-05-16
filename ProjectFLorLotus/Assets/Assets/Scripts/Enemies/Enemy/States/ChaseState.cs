@@ -1,12 +1,13 @@
 using StateMachine;
 using UnityEngine;
+using Drone;
 
 namespace Enemy
 {
     public class ChaseState : State<Enemy>
     {
-        readonly player_controller player;
-        public ChaseState(Enemy enemyObject, StateController<Enemy> stateController, player_controller player) : base(enemyObject, stateController)
+        readonly CommonPlayer player;
+        public ChaseState(Enemy enemyObject, StateController<Enemy> stateController, CommonPlayer player) : base(enemyObject, stateController)
         {
             this.gameObject = enemyObject;
             this.stateController = stateController;

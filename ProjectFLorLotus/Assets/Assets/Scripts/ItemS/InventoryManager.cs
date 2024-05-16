@@ -1,12 +1,12 @@
 using UnityEngine;
-
 public class InventoryManager : MonoBehaviour
 {
     public GameObject InventoryMenu;
     private bool menuActivated;
     public ItemSlot[] itemSlot;
+    public ItemSO[] itemS;
 
-    void Update()
+     void Update()
     {
         if (Input.GetButtonDown("Inventory") && menuActivated)
         {
@@ -23,6 +23,21 @@ public class InventoryManager : MonoBehaviour
             menuActivated = true;
         }
     }
+
+
+    public void UseItem(string itemName)
+    {
+        for(int i = 0; i < itemS.Length; i ++)
+        {
+            if (itemS[i].itemName == itemName)
+            {
+                itemS[i].UseItems();
+
+            }
+        }
+    }
+
+
 
     public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
     {

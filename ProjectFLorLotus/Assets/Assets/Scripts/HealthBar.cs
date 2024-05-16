@@ -29,4 +29,10 @@ public class HealthBar : MonoBehaviour
 
     }
 
+
+
+    public void ChangeHealth(int changeValue)
+    {
+        health += changeValue;
+    }
 }

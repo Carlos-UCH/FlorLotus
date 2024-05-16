@@ -1,14 +1,14 @@
 using StateMachine;
 using UnityEngine;
-
+using Drone;
 namespace Enemy
 {
     public class AttackState : State<Enemy>
     {
         float attackTimeout = 1f;
         float timeSinceLastAttack = 1f;
-        player_controller player;
-        public AttackState(Enemy enemyObject, StateController<Enemy> stateController, player_controller player) : base(enemyObject, stateController)
+        CommonPlayer player;
+        public AttackState(Enemy enemyObject, StateController<Enemy> stateController, CommonPlayer player) : base(enemyObject, stateController)
         {
             this.gameObject = enemyObject;
             this.stateController = stateController;
@@ -33,7 +33,7 @@ namespace Enemy
             timeSinceLastAttack += Time.deltaTime;
             if (timeSinceLastAttack > attackTimeout)
             {
-                player.GetComponent<HealthBar>().health -= 10;
+                player.health -= 10;
                 timeSinceLastAttack = 0f;
             }
         }

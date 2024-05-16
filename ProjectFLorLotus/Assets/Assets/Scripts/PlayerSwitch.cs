@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using Drone;
 
 
 public class PlayerSwitch : MonoBehaviour
@@ -11,25 +12,20 @@ public class PlayerSwitch : MonoBehaviour
     public CinemachineVirtualCamera[] cameras;
     public CinemachineVirtualCamera MainCamera;
     public CinemachineVirtualCamera player2Camera;
-    public CinemachineVirtualCamera player3Camera;
 
     public CinemachineVirtualCamera startingCamera;
     private CinemachineVirtualCamera currrentCam;
     
 
 
-    public player_controller playerController;
-    public player_controller player2Controller;
-     public player_controller player3Controller;
-     
-    private bool ver = false;
+    public CommonPlayer playerController;
+    public CommonPlayer player2Controller;
 
 
 
     void Start()
     {
         player2Controller.enabled = false;
-        player3Controller.enabled = false;
 
         currrentCam = startingCamera;
 
@@ -54,17 +50,21 @@ public class PlayerSwitch : MonoBehaviour
 
     void Update()
     {
+
+        if (playerController == null)
+        {
+            SwitchCamera(player2Camera);
+        }
+        else if (player2Controller == null)
+        {
+            SwitchCamera(MainCamera);
+        }
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             SwitchPlayer();
         }
 
-        if (Input.GetKeyDown(KeyCode.CapsLock))
-        {
-            ver = true;
-
-            SwitchPlayer();
-        }
     }
 
 
@@ -88,28 +88,17 @@ public class PlayerSwitch : MonoBehaviour
     {
 
 
-        if (ver && player3Controller.enabled == false)
-        {
-            playerController.enabled = false;
-            player2Controller.enabled = false;
-            player3Controller.enabled = true;
-            SwitchCamera(player3Camera);
-
-        }   
-        else if (playerController.enabled &&  ver == false)
+          
+        if (playerController.enabled)
         {    
             playerController.enabled = false;
             player2Controller.enabled = true;
-            player3Controller.enabled = false;
-            ver = false;
             SwitchCamera(player2Camera);
         }
         else
         {
             playerController.enabled = true;
             player2Controller.enabled = false;
-            player3Controller.enabled = false;
-            ver = false;
             SwitchCamera(MainCamera);
         
         }

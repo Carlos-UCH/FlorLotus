@@ -1,6 +1,7 @@
 using NodePathing;
 using StateMachine;
 using UnityEngine;
+using Drone;
 
 namespace Shooter
 {
@@ -42,7 +43,7 @@ namespace Shooter
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                stateController.SwitchState(new AttackState(this, stateController, other.gameObject.GetComponent<player_controller>()));
+                stateController.SwitchState(new AttackState(this, stateController, other.gameObject.GetComponent<CommonPlayer>()));
             }
         }
 

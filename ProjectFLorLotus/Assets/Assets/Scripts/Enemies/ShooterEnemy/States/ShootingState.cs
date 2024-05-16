@@ -1,5 +1,6 @@
 using StateMachine;
 using UnityEngine;
+using Drone;
 
 namespace Shooter
 {
@@ -7,8 +8,8 @@ namespace Shooter
     {
         readonly float attackTimeout = 1f;
         float timeSinceLastAttack = .6f;
-        player_controller player;
-        public AttackState(Shooter enemyObject, StateController<Shooter> stateController, player_controller player) : base(enemyObject, stateController)
+        CommonPlayer player;
+        public AttackState(Shooter enemyObject, StateController<Shooter> stateController, CommonPlayer player) : base(enemyObject, stateController)
         {
             this.gameObject = enemyObject;
             this.stateController = stateController;

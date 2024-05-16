@@ -1,5 +1,6 @@
 using StateMachine;
 using UnityEngine;
+using Drone;
 namespace Enemy
 {
     public class Enemy : MonoBehaviour
@@ -33,7 +34,7 @@ namespace Enemy
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                stateController.SwitchState(new AttackState(this, stateController, other.gameObject.GetComponent<player_controller>()));
+                stateController.SwitchState(new AttackState(this, stateController, other.gameObject.GetComponent<CommonPlayer>()));
             }
         }
 
@@ -41,7 +42,7 @@ namespace Enemy
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                stateController.SwitchState(new ChaseState(this, stateController, other.gameObject.GetComponent<player_controller>()));
+                stateController.SwitchState(new ChaseState(this, stateController, other.gameObject.GetComponent<CommonPlayer>()));
             }
         }
 
@@ -49,7 +50,7 @@ namespace Enemy
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                stateController.SwitchState(new ChaseState(this, stateController, other.gameObject.GetComponent<player_controller>()));
+                stateController.SwitchState(new ChaseState(this, stateController, other.gameObject.GetComponent<CommonPlayer>()));
             }
         }
 
