@@ -32,6 +32,7 @@ namespace Enemy
 
         public override void FrameUpdate()
         {
+        gameObject.facingDirection = wayPoint - gameObject.transform.position;
         }
 
         void SetNewDestination()
