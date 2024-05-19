@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 48227325982196447}
+  - component: {fileID: 4820794526062899427}
   - component: {fileID: 4381574640520422685}
   - component: {fileID: 2294244734843831921}
-  - component: {fileID: 2304567292150797778}
   m_Layer: 0
   m_Name: fov
   m_TagString: Untagged
@@ -34,6 +34,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4820794526062899427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2511014329604475844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 492106c3b0e9f4b3a807986d8c5ebe0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewAngle: 60
+  viewDistance: 5
+  EnemyObject: {fileID: 0}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &4381574640520422685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,16 +137,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3
---- !u!114 &2304567292150797778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2511014329604475844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 492106c3b0e9f4b3a807986d8c5ebe0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyObject: {fileID: 0}
