@@ -15,7 +15,7 @@ public class PlayerSwitch : MonoBehaviour
 
     public CinemachineVirtualCamera startingCamera;
     private CinemachineVirtualCamera currrentCam;
-
+    
 
 
     public CommonPlayer playerController;
@@ -29,7 +29,7 @@ public class PlayerSwitch : MonoBehaviour
 
         currrentCam = startingCamera;
 
-        for (int i = 0; i < cameras.Length; i++)
+        for (int i = 0; i <cameras.Length; i ++)
         {
             if (cameras[i] == currrentCam)
             {
@@ -39,12 +39,18 @@ public class PlayerSwitch : MonoBehaviour
             {
                 cameras[i].Priority = 10;
             }
+
+
         }
+
+
+
     }
 
 
     void Update()
     {
+
         if (playerController == null)
         {
             SwitchCamera(player2Camera);
@@ -59,16 +65,17 @@ public class PlayerSwitch : MonoBehaviour
         {
             SwitchPlayer();
         }
+
     }
 
 
     public void SwitchCamera(CinemachineVirtualCamera newCam)
     {
         currrentCam = newCam;
-
+        
         currrentCam.Priority = 20;
 
-        for (int i = 0; i < cameras.Length; i++)
+        for (int i = 0; i < cameras.Length; i ++)
         {
             if (cameras[i] != currrentCam)
             {
@@ -80,8 +87,11 @@ public class PlayerSwitch : MonoBehaviour
 
     public void SwitchPlayer()
     {
+
+
+          
         if (playerController.enabled)
-        {
+        {    
             playerController.enabled = false;
             player2Controller.enabled = true;
             SwitchCamera(player2Camera);
@@ -91,9 +101,13 @@ public class PlayerSwitch : MonoBehaviour
             playerController.enabled = true;
             player2Controller.enabled = false;
             SwitchCamera(MainCamera);
-
+        
         }
     }
+
+
+
+
 }
 
 

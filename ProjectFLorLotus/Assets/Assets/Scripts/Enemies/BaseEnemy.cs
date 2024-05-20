@@ -3,40 +3,46 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public abstract class BaseEnemy : MonoBehaviour
+    public class BaseEnemy : MonoBehaviour
     {
+        [SerializeField]
         public Vector3 facingDirection = Vector3.right;
 
         public StateController<BaseEnemy> stateController;
 
-        protected virtual void Awake()
+        private void Awake()
         {
             stateController = new StateController<BaseEnemy>();
         }
 
-        protected virtual void Start()
+        private void Start()
         {
         }
 
-        protected virtual void Update()
+        private void Update()
         {
             stateController.currentState.FrameUpdate();
         }
 
-        protected virtual void FixedUpdate()
+        private void FixedUpdate()
         {
             stateController.currentState.PhysicsUpdate();
         }
 
-        protected virtual void OnCollisionEnter2D(Collision2D other)
+        void OnCollisionEnter2D(Collision2D other)
         {
         }
 
-        protected virtual void OnCollisionExit2D(Collision2D other)
+        void OnCollisionExit2D(Collision2D other)
         {
         }
 
-        public abstract void FOVEnterSight(Transform entityInFOV);
-        public abstract void FOVExitSight();
+        void OnTriggerEnter2D(Collider2D other)
+        {
+        }
+
+        void OnTriggerExit2D(Collider2D other)
+        {
+        }
     }
 }

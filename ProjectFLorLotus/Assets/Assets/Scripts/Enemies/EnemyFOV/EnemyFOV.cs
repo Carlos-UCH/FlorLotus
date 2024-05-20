@@ -1,9 +1,7 @@
-using System;
 using Enemy;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-[Obsolete("Use EnemyGenericFov")]
 public class EnemyFOV : MonoBehaviour
 {
     // FOV
