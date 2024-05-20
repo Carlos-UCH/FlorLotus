@@ -5,9 +5,7 @@ using Drone;
 
 [CreateAssetMenu]
 public class ItemSO : ScriptableObject
-
 {
-
     public string itemName;
     public StatToChange statToChange = new StatToChange();
     public int amountToChangeStat;
@@ -18,18 +16,14 @@ public class ItemSO : ScriptableObject
         {
             if (GameObject.Find("PlayerClass").GetComponent<CommonPlayer>().enabled == true)
             {
-            GameObject.Find("PlayerClass").GetComponent<CommonPlayer>().ChangeHealth(amountToChangeStat);
+                GameObject.Find("PlayerClass").GetComponent<CommonPlayer>().ChangeHealth(amountToChangeStat);
             }
             else
             {
-            GameObject.Find("RepairClass").GetComponent<CommonPlayer>().ChangeHealth(amountToChangeStat);
+                GameObject.Find("RepairClass").GetComponent<CommonPlayer>().ChangeHealth(amountToChangeStat);
             }
-            }
-
         }
-
-    
-
+    }
 
     public enum StatToChange
     {
@@ -37,6 +31,4 @@ public class ItemSO : ScriptableObject
         health,
         energy
     };
-
-
 }

@@ -23,18 +23,17 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-
             if (Input.GetKey(KeyCode.C))
             {
-            int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
-            if (leftOverItems <= 0)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                quantity = leftOverItems;
-            }
+                int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
+                if (leftOverItems <= 0)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    quantity = leftOverItems;
+                }
             }
         }
     }
