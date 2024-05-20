@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3152524919799015713}
   - component: {fileID: 3010802640868303034}
   - component: {fileID: 7367172247577069251}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy FOV
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -133,6 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   facingDirection: {x: 1, y: 0, z: 0}
+  bullet: {fileID: 0}
+  shootingPower: 1
 --- !u!114 &7367172247577069251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,3 +150,4 @@ MonoBehaviour:
   viewAngle: 60
   viewDistance: 5
   EnemyObject: {fileID: 0}
+  entityInSight: {fileID: 0}

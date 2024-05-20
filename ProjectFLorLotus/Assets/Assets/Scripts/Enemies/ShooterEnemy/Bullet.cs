@@ -14,9 +14,14 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             other.GetComponent<CommonPlayer>().health -= 10;
+            Destroy(gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Collider"))
+        {
             Destroy(gameObject);
         }
     }

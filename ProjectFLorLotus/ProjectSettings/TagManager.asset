@@ -7,6 +7,7 @@ TagManager:
   - Item
   - Enemy
   - Enemy1
+  - Collider
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,6 @@ TagManager:
   - Enemy Targets
   - ItemNoCollide
   - ItemCollide
-  - 
   - 
   - 
   - 

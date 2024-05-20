@@ -72,13 +72,20 @@ public class EnemyGenericFOV : MonoBehaviour
         float angleToTarget = Vector3.Angle(EnemyObject.GetComponent<BaseEnemy>().facingDirection, directionToTarget);
         if (angleToTarget < viewAngle / 2f)
         {
-            if (!Physics2D.Raycast(transform.position, directionToTarget, viewDistance).collider.gameObject.CompareTag("Player"))
+            RaycastHit2D[] rayHits = Physics2D.RaycastAll(transform.position, directionToTarget, viewDistance);
+            foreach (var rayHit in rayHits)
             {
-                return true;
+                if (rayHit.collider.CompareTag("Collider"))
+                {
+                    return false;
+                }
+                if (rayHit.collider != null && rayHit.collider.CompareTag("Player"))
+                {
+                    return true;
+                }
             }
         }
 
-        // Debug.DrawLine(transform.position, transform.position + directionToTarget * viewDistance, Color.red);
         return false;
     }
 
