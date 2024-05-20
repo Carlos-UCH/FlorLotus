@@ -71,7 +71,7 @@ public class EnemyFOV : MonoBehaviour
         float angleToTarget = Vector3.Angle(EnemyObject.GetComponent<Enemy.Enemy>().facingDirection, directionToTarget);
         if (angleToTarget < viewAngle / 2f)
         {
-            if (!Physics2D.Raycast(transform.position, directionToTarget, viewDistance, ).collider.gameObject.CompareTag("Player"))
+            if (!Physics2D.Raycast(transform.position, directionToTarget, viewDistance).collider.gameObject.CompareTag("Player"))
             {
                 return true;
             }
