@@ -5,8 +5,11 @@ namespace Enemy
 {
     public class Enemy : MonoBehaviour
     {
-        private StateController<Enemy> stateController;
-        private PatrolState patrolState;
+        [SerializeField]
+        public Vector3 facingDirection = Vector3.right;
+
+        public StateController<Enemy> stateController;
+        public PatrolState patrolState;
 
         private void Awake()
         {

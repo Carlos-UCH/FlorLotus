@@ -23,7 +23,7 @@ namespace Enemy
 
         public override void PhysicsUpdate()
         {
-            if (Vector3.Distance(this.gameObject.transform.position, wayPoint) == 0 || Time.fixedTime % 2 == 0)
+            if (Vector3.Distance(this.gameObject.transform.position, wayPoint) == 0 || Time.fixedTime % 8 == 0)
             {
                 SetNewDestination();
             }
@@ -32,6 +32,7 @@ namespace Enemy
 
         public override void FrameUpdate()
         {
+        gameObject.facingDirection = wayPoint - gameObject.transform.position;
         }
 
         void SetNewDestination()
