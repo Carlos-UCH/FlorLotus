@@ -3,13 +3,10 @@ using UnityEngine;
 using Drone;
 namespace Enemy
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : BaseEnemy
     {
-        [SerializeField]
-        public Vector3 facingDirection = Vector3.right;
-
-        public StateController<Enemy> stateController;
         public PatrolState patrolState;
+        public new StateController<Enemy> stateController;
 
         private void Awake()
         {
