@@ -54,10 +54,12 @@ public class PlayerSwitch : MonoBehaviour
         if (playerController == null)
         {
             SwitchCamera(player2Camera);
+            player2Controller.enabled = true;
         }
         else if (player2Controller == null)
         {
             SwitchCamera(MainCamera);
+            playerController.enabled = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
