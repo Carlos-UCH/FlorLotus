@@ -51,17 +51,17 @@ public class EnemyFOV : MonoBehaviour
     {
         EnemyFOV fov = this.GetComponentInChildren<EnemyFOV>();
 
-        if (other.gameObject.CompareTag("Player"))
-        {
-            if (fov.IsTargetInSight(other.transform) && EnemyObject.GetComponent<Enemy.Enemy>().stateController.currentState == EnemyObject.GetComponent<Enemy.Enemy>().patrolState)
-            {
-                EnemyObject.GetComponent<Enemy.Enemy>().stateController.SwitchState(new Enemy.ChaseState(EnemyObject.GetComponent<Enemy.Enemy>(), EnemyObject.GetComponent<Enemy.Enemy>().stateController, other.gameObject.GetComponent<player_controller>()));
-            }
-            else if (!fov.IsTargetInSight(other.transform) && EnemyObject.GetComponent<Enemy.Enemy>().stateController.currentState.GetType() == typeof(ChaseState))
-            {
-                EnemyObject.GetComponent<Enemy.Enemy>().stateController.SwitchState(EnemyObject.GetComponent<Enemy.Enemy>().patrolState);
-            }
-        }
+        // if (other.gameObject.CompareTag("Player"))
+        // {
+        //     if (fov.IsTargetInSight(other.transform) && EnemyObject.GetComponent<Enemy.Enemy>().stateController.currentState == EnemyObject.GetComponent<Enemy.Enemy>().patrolState)
+        //     {
+        //         EnemyObject.GetComponent<Enemy.Enemy>().stateController.SwitchState(new Enemy.ChaseState(EnemyObject.GetComponent<Enemy.Enemy>(), EnemyObject.GetComponent<Enemy.Enemy>().stateController, other.gameObject.GetComponent<player_controller>()));
+        //     }
+        //     else if (!fov.IsTargetInSight(other.transform) && EnemyObject.GetComponent<Enemy.Enemy>().stateController.currentState.GetType() == typeof(ChaseState))
+        //     {
+        //         EnemyObject.GetComponent<Enemy.Enemy>().stateController.SwitchState(EnemyObject.GetComponent<Enemy.Enemy>().patrolState);
+        //     }
+        // }
     }
 
     public bool IsTargetInSight(Transform target)
