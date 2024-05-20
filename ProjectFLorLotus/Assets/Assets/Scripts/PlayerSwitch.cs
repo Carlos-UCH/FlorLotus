@@ -61,11 +61,11 @@ public class PlayerSwitch : MonoBehaviour
             SwitchCamera(MainCamera);
             playerController.enabled = true;
         }
-
-        if (Input.GetKeyDown(KeyCode.Tab))
+          if (Input.GetKeyDown(KeyCode.Tab))
         {
             SwitchPlayer();
         }
+
 
     }
 
