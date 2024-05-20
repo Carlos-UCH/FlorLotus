@@ -8,29 +8,29 @@ namespace Enemy
         public PatrolState patrolState;
         public new StateController<Enemy> stateController;
 
-        private void Awake()
+        protected override void Awake()
         {
             stateController = new StateController<Enemy>();
 
             patrolState = new PatrolState(this, stateController);
         }
 
-        private void Start()
+        protected override void Start()
         {
             stateController.Initialize(patrolState);
         }
 
-        private void Update()
+        protected override void Update()
         {
             stateController.currentState.FrameUpdate();
         }
 
-        private void FixedUpdate()
+        protected override void FixedUpdate()
         {
             stateController.currentState.PhysicsUpdate();
         }
 
-        void OnCollisionEnter2D(Collision2D other)
+        protected override void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Player"))
             {
@@ -38,7 +38,7 @@ namespace Enemy
             }
         }
 
-        void OnCollisionExit2D(Collision2D other)
+        protected override void OnCollisionExit2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Player"))
             {
@@ -60,6 +60,16 @@ namespace Enemy
             {
                 stateController.SwitchState(patrolState);
             }
+        }
+
+        public override void FOVEnterSight(Transform entityInFOV)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void FOVExitSight()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
