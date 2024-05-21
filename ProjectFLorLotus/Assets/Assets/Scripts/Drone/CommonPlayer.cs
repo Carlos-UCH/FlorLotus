@@ -10,12 +10,17 @@ namespace Drone
 
     public class CommonPlayer : MonoBehaviour
     {
-
+        /*************************
+           * PLAYER ATRIBUTES *
+        *************************/
         [SerializeField] public float health;
         [SerializeField] public float maxHealth;
         [SerializeField] public Image healthBar;
-        private Rigidbody2D _playerRigidbody2D;
+        [SerializeField] public float energy;
+        [SerializeField] public float maxEnergy;
+        [SerializeField] public Image energyBar;
         public float _playerSpeed;
+        private Rigidbody2D _playerRigidbody2D;
         private Animator _playerAnimator;
         private float _playerInitialSpeed;
         public float _playerRunSpeed;
@@ -23,7 +28,10 @@ namespace Drone
         private int collcheck;
         private InventoryManager inventoryManager;
 
-        void Start()
+        /*************************
+        * MONOBEHAVIOUR FUNCTIONS *
+        *************************/
+        protected void Start()
         {
             _playerRigidbody2D = GetComponent<Rigidbody2D>();
 
@@ -32,44 +40,26 @@ namespace Drone
             _playerInitialSpeed = _playerSpeed;
 
         }
-
         protected void Update()
         {
 
             //HealthBar//
-            if (health > maxHealth)
-            {
-                health = maxHealth;
-            }
-            healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
-            if (health <= 0)
-            {
-                GetComponent<CommonPlayer>().enabled = false;
-                Destroy(gameObject, 1.0f);
-
-            }
-
+            PlayerDie();
+            PlayerIsFull();
+            HealthBarModifier();
             //PlayerDirectionSetter//
-            _playerDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            if (_playerDirection.sqrMagnitude > 0)
-            {
-                _playerAnimator.SetInteger("Movement", direction());
-
-            }
-            else
-            {
-                _playerAnimator.SetInteger("Movement", 0);
-            }
+            PlayerWalk();
+            PlayerMovementVerification();
             playerRun();
         }
-
-
         void FixedUpdate()
         {
             _playerRigidbody2D.MovePosition(_playerRigidbody2D.position + _playerDirection * _playerSpeed * Time.fixedDeltaTime);
-
         }
 
+        /*************************
+            * PLAYER METHODS *
+        *************************/
         int direction()
         {
             if (_playerDirection.x > 0)
@@ -91,32 +81,63 @@ namespace Drone
 
             return 0;
         }
-
-
-        void playerRun()
+        void PlayerWalk()
         {
-
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            _playerDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        }
+        void PlayerMovementVerification()
+        {
+            if (_playerDirection.sqrMagnitude > 0)
             {
-
-                _playerSpeed = _playerRunSpeed;
+                _playerAnimator.SetInteger("Movement", direction());
 
             }
-
-            if (Input.GetKeyUp(KeyCode.LeftShift))
+            else
             {
-
-                _playerSpeed = _playerInitialSpeed;
-
+                _playerAnimator.SetInteger("Movement", 0);
             }
         }
-
-        public void ChangeHealth(int amountToChange)
+        void playerRun()
+        {
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                _playerSpeed = _playerRunSpeed;
+            }
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                _playerSpeed = _playerInitialSpeed;
+            }
+        }
+        public void AddHealth(int amountToChange)
         {
             if (health < maxHealth)
             {
                 health += amountToChange;
             }
         }
+        public void RemoveHealth(int amountToChange)
+        {
+            health -= amountToChange;
+        }
+        void PlayerDie()
+        {
+            if (health <= 0)
+        {   GetComponent<CommonPlayer>().enabled = false;
+            Destroy(gameObject, 1.0f);
+        }
+        }
+        void PlayerIsFull()
+        {
+            if (health > maxHealth)
+            {
+                health = maxHealth;
+            }
+        }
+
+        public void HealthBarModifier()
+            {
+            healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
+
+            }
+        }
     }
-}
