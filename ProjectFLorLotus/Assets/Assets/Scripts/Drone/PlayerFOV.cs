@@ -24,7 +24,7 @@ namespace Drone
         // Update is called once per frame
         void Update()
         {
-            this.transform.rotation = Quaternion.FromToRotation(Vector3.up, -GetMouseVector());
+            this.transform.rotation = Quaternion.FromToRotation(Vector3.up, GetMouseVector());
         }
 
         Vector3 GetMouseVector()
@@ -34,8 +34,10 @@ namespace Drone
 
             Vector3 playerPosition = this.transform.position;
             Vector3 mouseDir = mouseWorldPosition - playerPosition;
+            
 
             mouseDir.z = 0;
+            Debug.Log(mouseDir);
             return mouseDir;
         }
 
