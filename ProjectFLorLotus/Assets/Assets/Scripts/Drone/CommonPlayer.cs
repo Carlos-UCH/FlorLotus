@@ -1,16 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.Intrinsics;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 namespace Drone
 {
-
     public class CommonPlayer : MonoBehaviour
     {
-
+        public Vector3 facingDirection;
         [SerializeField] public float health;
         [SerializeField] public float maxHealth;
         [SerializeField] public Image healthBar;
@@ -35,7 +31,6 @@ namespace Drone
 
         protected void Update()
         {
-
             //HealthBar//
             if (health > maxHealth)
             {
@@ -118,5 +113,25 @@ namespace Drone
                 health += amountToChange;
             }
         }
+
+        /*     Vector3 GetMouseVector()
+             {
+                 Vector3 mouseScreenPosition = Input.mousePosition;
+                 Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+
+                 Vector3 playerPosition = this.transform.position;
+                 Vector3 mouseDir = mouseWorldPosition - playerPosition;
+
+                 mouseDir.z = 0;
+                 return mouseDir;
+             }
+
+             void SyncFOVDirection(Vector3 mouseDir)
+             {
+                 this.GetComponent<Light2D>().
+             }
+     */
+
+
     }
 }
