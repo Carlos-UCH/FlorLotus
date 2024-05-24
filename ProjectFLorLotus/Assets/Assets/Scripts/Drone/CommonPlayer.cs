@@ -19,10 +19,16 @@ namespace Drone
         [SerializeField] public float energy;
         [SerializeField] public float maxEnergy;
         [SerializeField] public Image energyBar;
+        private bool playerIsRunning ;
+        private bool playerIsWalking ;
+        [SerializeField]private float walkingCost ;
+        [SerializeField]private float runningCost ;
+        [SerializeField] protected float energyPassiveRegen ;
         public float _playerSpeed;
         private Rigidbody2D _playerRigidbody2D;
         private Animator _playerAnimator;
         private float _playerInitialSpeed;
+        private float playerInitialRunSpeed;
         public float _playerRunSpeed;
         private Vector2 _playerDirection;
         private int collcheck;
@@ -34,23 +40,24 @@ namespace Drone
         protected void Start()
         {
             _playerRigidbody2D = GetComponent<Rigidbody2D>();
-
             _playerAnimator = GetComponent<Animator>();
-
             _playerInitialSpeed = _playerSpeed;
-
-        }
+            playerInitialRunSpeed = _playerRunSpeed;
+        }   
         protected void Update()
         {
-
             //HealthBar//
             PlayerDie();
             PlayerIsFull();
-            HealthBarModifier();
+            BarModifiers
+();
             //PlayerDirectionSetter//
-            PlayerWalk();
             PlayerMovementVerification();
             playerRun();
+            PlayerWalk();
+            EnergyDrain();
+            EnergyRecovery();
+            EnergyCheck();
         }
         void FixedUpdate()
         {
@@ -90,11 +97,12 @@ namespace Drone
             if (_playerDirection.sqrMagnitude > 0)
             {
                 _playerAnimator.SetInteger("Movement", direction());
-
+                playerIsWalking = true;
             }
             else
             {
                 _playerAnimator.SetInteger("Movement", 0);
+                playerIsWalking = false;
             }
         }
         void playerRun()
@@ -102,10 +110,12 @@ namespace Drone
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 _playerSpeed = _playerRunSpeed;
+                playerIsRunning = true;
             }
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 _playerSpeed = _playerInitialSpeed;
+                playerIsRunning = false;
             }
         }
         public void AddHealth(int amountToChange)
@@ -132,12 +142,52 @@ namespace Drone
             {
                 health = maxHealth;
             }
-        }
-
-        public void HealthBarModifier()
+            if (energy > maxEnergy)
             {
-            healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
-
+                energy = maxEnergy;
             }
         }
+        public void BarModifiers()
+            {
+            healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
+            energyBar.fillAmount = Mathf.Clamp(energy / maxEnergy, 0, 1);
+            }
+        public void EnergyDrain()
+            {
+                if (energy > 0)
+                    {
+                        if (playerIsWalking)
+                            {
+                                energy -= walkingCost * Time.deltaTime;            
+                            }
+                        if (playerIsRunning)
+                            {
+                                energy -= runningCost * Time.deltaTime;
+                            }
+                    }
+            }        
+        void EnergyRecovery()
+            {
+                if (!playerIsWalking && energy < maxEnergy)
+                    {
+                        energy += energyPassiveRegen * Time.deltaTime;
+                    }
+            }
+        void EnergyCheck()
+            {
+            if (energy <= 0)
+                {
+                    _playerSpeed = 0;
+                    _playerRunSpeed = 0;
+                }
+            if (energy >= walkingCost && energy <= runningCost)
+                {
+                    _playerSpeed = _playerInitialSpeed;
+                }
+            else
+                {
+                    _playerRunSpeed = playerInitialRunSpeed;
+                }    
+            }    
     }
+}
