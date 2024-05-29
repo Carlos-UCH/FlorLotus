@@ -10,66 +10,63 @@ namespace Drone
 
     public class CommonPlayer : MonoBehaviour
     {
-
+        /*************************
+           * PLAYER ATRIBUTES *
+        *************************/
         [SerializeField] public float health;
         [SerializeField] public float maxHealth;
         [SerializeField] public Image healthBar;
-        private Rigidbody2D _playerRigidbody2D;
+        [SerializeField] public float energy;
+        [SerializeField] public float maxEnergy;
+        [SerializeField] public Image energyBar;
+        private bool playerIsRunning ;
+        private bool playerIsWalking ;
+        [SerializeField]private float walkingCost ;
+        [SerializeField]private float runningCost ;
+        [SerializeField] protected float energyPassiveRegen ;
         public float _playerSpeed;
+        private Rigidbody2D _playerRigidbody2D;
         private Animator _playerAnimator;
         private float _playerInitialSpeed;
+        private float playerInitialRunSpeed;
         public float _playerRunSpeed;
         private Vector2 _playerDirection;
         private int collcheck;
         private InventoryManager inventoryManager;
 
-        void Start()
+        /*************************
+        * MONOBEHAVIOUR FUNCTIONS *
+        *************************/
+        protected void Start()
         {
             _playerRigidbody2D = GetComponent<Rigidbody2D>();
-
             _playerAnimator = GetComponent<Animator>();
-
             _playerInitialSpeed = _playerSpeed;
-
-        }
-
+            playerInitialRunSpeed = _playerRunSpeed;
+        }   
         protected void Update()
         {
-
             //HealthBar//
-            if (health > maxHealth)
-            {
-                health = maxHealth;
-            }
-            healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
-            if (health <= 0)
-            {
-                GetComponent<CommonPlayer>().enabled = false;
-                Destroy(gameObject, 1.0f);
-
-            }
-
+            PlayerDie();
+            PlayerIsFull();
+            BarModifiers
+();
             //PlayerDirectionSetter//
-            _playerDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            if (_playerDirection.sqrMagnitude > 0)
-            {
-                _playerAnimator.SetInteger("Movement", direction());
-
-            }
-            else
-            {
-                _playerAnimator.SetInteger("Movement", 0);
-            }
+            PlayerMovementVerification();
             playerRun();
+            PlayerWalk();
+            EnergyDrain();
+            EnergyRecovery();
+            EnergyCheck();
         }
-
-
         void FixedUpdate()
         {
             _playerRigidbody2D.MovePosition(_playerRigidbody2D.position + _playerDirection * _playerSpeed * Time.fixedDeltaTime);
-
         }
 
+        /*************************
+            * PLAYER METHODS *
+        *************************/
         int direction()
         {
             if (_playerDirection.x > 0)
@@ -91,32 +88,106 @@ namespace Drone
 
             return 0;
         }
-
-
-        void playerRun()
+        void PlayerWalk()
         {
-
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            _playerDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        }
+        void PlayerMovementVerification()
+        {
+            if (_playerDirection.sqrMagnitude > 0)
             {
-
-                _playerSpeed = _playerRunSpeed;
-
+                _playerAnimator.SetInteger("Movement", direction());
+                playerIsWalking = true;
             }
-
-            if (Input.GetKeyUp(KeyCode.LeftShift))
+            else
             {
-
-                _playerSpeed = _playerInitialSpeed;
-
+                _playerAnimator.SetInteger("Movement", 0);
+                playerIsWalking = false;
             }
         }
-
-        public void ChangeHealth(int amountToChange)
+        void playerRun()
+        {
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                _playerSpeed = _playerRunSpeed;
+                playerIsRunning = true;
+            }
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                _playerSpeed = _playerInitialSpeed;
+                playerIsRunning = false;
+            }
+        }
+        public void AddHealth(int amountToChange)
         {
             if (health < maxHealth)
             {
                 health += amountToChange;
             }
         }
+        public void RemoveHealth(int amountToChange)
+        {
+            health -= amountToChange;
+        }
+        void PlayerDie()
+        {
+            if (health <= 0)
+        {   GetComponent<CommonPlayer>().enabled = false;
+            Destroy(gameObject, 1.0f);
+        }
+        }
+        void PlayerIsFull()
+        {
+            if (health > maxHealth)
+            {
+                health = maxHealth;
+            }
+            if (energy > maxEnergy)
+            {
+                energy = maxEnergy;
+            }
+        }
+        public void BarModifiers()
+            {
+            healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
+            energyBar.fillAmount = Mathf.Clamp(energy / maxEnergy, 0, 1);
+            }
+        public void EnergyDrain()
+            {
+                if (energy > 0)
+                    {
+                        if (playerIsWalking)
+                            {
+                                energy -= walkingCost * Time.deltaTime;            
+                            }
+                        if (playerIsRunning)
+                            {
+                                energy -= runningCost * Time.deltaTime;
+                            }
+                    }
+            }        
+        void EnergyRecovery()
+            {
+                if (!playerIsWalking && energy < maxEnergy)
+                    {
+                        energy += energyPassiveRegen * Time.deltaTime;
+                    }
+            }
+        void EnergyCheck()
+            {
+            if (energy <= 0)
+                {
+                    _playerSpeed = 0;
+                    _playerRunSpeed = 0;
+                }
+            if (energy >= walkingCost && energy <= runningCost)
+                {
+                    _playerSpeed = _playerInitialSpeed;
+                }
+            else
+                {
+                    _playerRunSpeed = playerInitialRunSpeed;
+                }    
+            }    
     }
 }

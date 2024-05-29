@@ -16,11 +16,11 @@ public class ItemSO : ScriptableObject
         {
             if (GameObject.Find("PlayerClass").GetComponent<CommonPlayer>().enabled == true)
             {
-                GameObject.Find("PlayerClass").GetComponent<CommonPlayer>().ChangeHealth(amountToChangeStat);
+                GameObject.Find("PlayerClass").GetComponent<CommonPlayer>().AddHealth(amountToChangeStat);
             }
             else
             {
-                GameObject.Find("RepairClass").GetComponent<CommonPlayer>().ChangeHealth(amountToChangeStat);
+                GameObject.Find("RepairClass").GetComponent<CommonPlayer>().AddHealth(amountToChangeStat);
             }
         }
     }
