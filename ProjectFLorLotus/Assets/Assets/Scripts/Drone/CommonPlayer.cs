@@ -40,6 +40,7 @@ namespace Drone
         *************************/
         protected void Start()
         {
+            
             _playerRigidbody2D = GetComponent<Rigidbody2D>();
             _playerAnimator = GetComponent<Animator>();
             _playerInitialSpeed = _playerSpeed;
@@ -136,7 +137,10 @@ namespace Drone
         {   GetComponent<CommonPlayer>().enabled = false;
             Destroy(gameObject, 1.0f);
         }
+
         }
+
+    
         void PlayerIsFull()
         {
             if (health > maxHealth)
