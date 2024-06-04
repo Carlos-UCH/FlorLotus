@@ -6,14 +6,22 @@ using Drone;
 public class LandMine : MonoBehaviour
 {
  
+ public ParticleSystem particleSystem; 
  void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             other.GetComponent<CommonPlayer>().health -= 90;
-            Destroy(gameObject);
+            DestroyLandMine();
         }
 
+    }
+
+    public void DestroyLandMine()
+    {
+        Instantiate(particleSystem, transform.position, Quaternion.identity);
+        
+        Destroy(gameObject);
     }
 
 }
