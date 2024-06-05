@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Item
+  - Enemy
   - Enemy1
+  - Collider
   layers:
   - Default
   - TransparentFX
@@ -12,9 +15,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Enemy Targets
+  - ItemNoCollide
+  - ItemCollide
   - 
   - 
   - 
