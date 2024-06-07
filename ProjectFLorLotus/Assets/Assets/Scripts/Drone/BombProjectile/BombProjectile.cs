@@ -5,49 +5,29 @@ using UnityEngine;
 
 public class BombProjectile : MonoBehaviour
 {
-    Collider2D[] inBombRadius = null;
-    [SerializeField] protected float ExplosionRadius;
-    [SerializeField] private ParticleSystem bombParticle = default;
-    [SerializeField] private float currentDistance = -1;
+    [SerializeField]bool isOnGround = false;
+    GameObject bombObject;
+    [SerializeField] GameObject bombPrefab;
+    [SerializeField] GameObject bombPrefab2;
 
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {  
-
-            Explode();
-
-        }
-
-    }
-
-    void Explode()
-    {
-        inBombRadius = Physics2D.OverlapCircleAll(transform.position, ExplosionRadius);
-        bombParticle.Play();
-        foreach (Collider2D e in inBombRadius)
+        if (!isOnGround && Input.GetKeyDown(KeyCode.Z))
+                {
+                isOnGround = true;
+                bombObject = Instantiate(bombPrefab);
+                bombObject.transform.position = GameObject.FindWithTag("Player").transform.position + new Vector3(1,0,0);
+                }
+        if (!isOnGround && Input.GetKeyDown(KeyCode.T))
         {
-            if (e.CompareTag("Enemy"))
-            {
-                e.GetComponent<MonoBehaviour>().enabled = false;
-                StartCoroutine(Activate(e));
+            isOnGround = true;
+            bombObject = Instantiate(bombPrefab2);
+            bombObject.transform.position = GameObject.FindWithTag("Player").transform.position + new Vector3(1,0,0);
             }
-       /*     if (e.CompareTag("Player"))
-            { 
-                Vector2 playerVector = e.GetComponent<Vector2>();
-                Vector2.Distance(This, playerVector);
-            
-            }*/
+        
+        if (bombObject == null)
+        {
+            isOnGround = false;
         }
-
-    }
-
-    private IEnumerator Activate(Collider2D other)
-    {
-        yield return new WaitForSeconds(5);
-        other.GetComponent<MonoBehaviour>().enabled = true;
-    
-    }
-
+}
 }
