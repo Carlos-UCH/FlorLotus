@@ -19,7 +19,7 @@ namespace TurretEnemy
 
         public override void Enter()
         {
-            this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            this.gameObject.GetComponentInParent<SpriteRenderer>().color = Color.white;
         }
 
         public override void Exit()
