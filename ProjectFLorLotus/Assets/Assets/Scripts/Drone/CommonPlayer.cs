@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.Intrinsics;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 namespace Drone
 {
-
     public class CommonPlayer : MonoBehaviour
     {
-        /*************************
-           * PLAYER ATRIBUTES *
-        *************************/
+        public Vector3 facingDirection;        
         [SerializeField] public float health;
         [SerializeField] public float maxHealth;
         [SerializeField] public Image healthBar;
