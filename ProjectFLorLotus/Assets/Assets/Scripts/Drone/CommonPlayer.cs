@@ -6,18 +6,18 @@ namespace Drone
 {
     public class CommonPlayer : MonoBehaviour
     {
-        public Vector3 facingDirection;        
+        public Vector3 facingDirection;
         [SerializeField] public float health;
         [SerializeField] public float maxHealth;
         [SerializeField] public Image healthBar;
         [SerializeField] public float energy;
         [SerializeField] public float maxEnergy;
         [SerializeField] public Image energyBar;
-        private bool playerIsRunning ;
-        private bool playerIsWalking ;
-        [SerializeField]private float walkingCost ;
-        [SerializeField]private float runningCost ;
-        [SerializeField] protected float energyPassiveRegen ;
+        private bool playerIsRunning;
+        private bool playerIsWalking;
+        [SerializeField] private float walkingCost;
+        [SerializeField] private float runningCost;
+        [SerializeField] protected float energyPassiveRegen;
         public float _playerSpeed;
         private Rigidbody2D _playerRigidbody2D;
         private Animator _playerAnimator;
@@ -37,7 +37,7 @@ namespace Drone
             _playerAnimator = GetComponent<Animator>();
             _playerInitialSpeed = _playerSpeed;
             playerInitialRunSpeed = _playerRunSpeed;
-        }   
+        }
         protected void Update()
         {
             //HealthBar//
@@ -126,9 +126,10 @@ namespace Drone
         void PlayerDie()
         {
             if (health <= 0)
-        {   GetComponent<CommonPlayer>().enabled = false;
-            Destroy(gameObject, 1.0f);
-        }
+            {
+                GetComponent<CommonPlayer>().enabled = false;
+                Destroy(gameObject, 1.0f);
+            }
         }
         void PlayerIsFull()
         {
@@ -142,46 +143,46 @@ namespace Drone
             }
         }
         public void BarModifiers()
-            {
+        {
             healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
             energyBar.fillAmount = Mathf.Clamp(energy / maxEnergy, 0, 1);
-            }
+        }
         public void EnergyDrain()
+        {
+            if (energy > 0)
             {
-                if (energy > 0)
-                    {
-                        if (playerIsWalking)
-                            {
-                                energy -= walkingCost * Time.deltaTime;            
-                            }
-                        if (playerIsRunning)
-                            {
-                                energy -= runningCost * Time.deltaTime;
-                            }
-                    }
-            }        
-        void EnergyRecovery()
-            {
-                if (!playerIsWalking && energy < maxEnergy)
-                    {
-                        energy += energyPassiveRegen * Time.deltaTime;
-                    }
+                if (playerIsWalking)
+                {
+                    energy -= walkingCost * Time.deltaTime;
+                }
+                if (playerIsRunning)
+                {
+                    energy -= runningCost * Time.deltaTime;
+                }
             }
-        void EnergyCheck()
+        }
+        void EnergyRecovery()
+        {
+            if (!playerIsWalking && energy < maxEnergy)
             {
+                energy += energyPassiveRegen * Time.deltaTime;
+            }
+        }
+        void EnergyCheck()
+        {
             if (energy <= 0)
-                {
-                    _playerSpeed = 0;
-                    _playerRunSpeed = 0;
-                }
+            {
+                _playerSpeed = 0;
+                _playerRunSpeed = 0;
+            }
             if (energy >= walkingCost && energy <= runningCost)
-                {
-                    _playerSpeed = _playerInitialSpeed;
-                }
+            {
+                _playerSpeed = _playerInitialSpeed;
+            }
             else
-                {
-                    _playerRunSpeed = playerInitialRunSpeed;
-                }    
-            }    
+            {
+                _playerRunSpeed = playerInitialRunSpeed;
+            }
+        }
     }
 }
