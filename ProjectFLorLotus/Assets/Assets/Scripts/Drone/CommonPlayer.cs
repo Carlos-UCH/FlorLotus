@@ -46,7 +46,7 @@ namespace Drone
             _playerInitialSpeed = _playerSpeed;
             playerInitialRunSpeed = _playerRunSpeed;
         }   
-        new void Update()
+        protected void Update()
         {
             //HealthBar//
             PlayerDie();
@@ -60,7 +60,7 @@ namespace Drone
             EnergyRecovery();
             EnergyCheck();
             //Bomb Methods
-            base.Update();
+            BombPlacing();
             BombCost();
         }
         void FixedUpdate()
@@ -198,7 +198,7 @@ namespace Drone
             }    
     
 
-        void BombCost()
+        private void BombCost()
         {
             if (bombExploded == 1)
             {

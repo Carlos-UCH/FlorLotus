@@ -90,5 +90,6 @@ public void StartHealingEffect(float duration)
     healingEffect.SetActive(true);
     healingEffect.transform.Find("RadialProgressBar").GetComponent<CircularProgressBar>().ActivateCountdown(duration);
   }
+  void BombPlacing(){}
 }
 }

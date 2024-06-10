@@ -10,7 +10,8 @@ public class BombProjectile : MonoBehaviour
     [SerializeField] protected GameObject bombPrefab;
     [SerializeField] protected GameObject bombPrefab2;
     protected int bombExploded;
-    protected void Update()
+ 
+    protected void BombPlacing()
     {
         if (!isOnGround && Input.GetKeyDown(KeyCode.Z))
                 {
@@ -31,5 +32,5 @@ public class BombProjectile : MonoBehaviour
         {
         isOnGround = false;
         }
-}
+    }
 }

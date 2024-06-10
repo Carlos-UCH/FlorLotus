@@ -6,7 +6,7 @@ public class InstaExplosion : MonoBehaviour
 {
 
     Collider2D[] inBombRadius = null;
-    [SerializeField] protected float ExplosionRadius;
+    [SerializeField] protected float explosionRadius;
     [SerializeField] private ParticleSystem bombParticle = default;
     private bool alreadyExploded;
 
@@ -20,7 +20,7 @@ public class InstaExplosion : MonoBehaviour
     void Explode()
     {
         alreadyExploded = true;
-        inBombRadius = Physics2D.OverlapCircleAll(transform.position, ExplosionRadius);
+        inBombRadius = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         bombParticle.Play();
         foreach (Collider2D e in inBombRadius)
         {
@@ -30,6 +30,11 @@ public class InstaExplosion : MonoBehaviour
             }
         }
         Destroy(gameObject,1);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, explosionRadius
+);
     }
 
 }
