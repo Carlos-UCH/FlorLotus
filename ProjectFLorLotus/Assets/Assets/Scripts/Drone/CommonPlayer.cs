@@ -9,7 +9,7 @@ using UnityEngine.UI;
 namespace Drone
 {
 
-    public class CommonPlayer : MonoBehaviour
+    public class CommonPlayer : BombProjectile
     {
         /*************************
            * PLAYER ATRIBUTES *
@@ -46,13 +46,12 @@ namespace Drone
             _playerInitialSpeed = _playerSpeed;
             playerInitialRunSpeed = _playerRunSpeed;
         }   
-        protected void Update()
+        new void Update()
         {
             //HealthBar//
             PlayerDie();
             PlayerIsFull();
-            BarModifiers
-();
+            BarModifiers();
             //PlayerDirectionSetter//
             PlayerMovementVerification();
             playerRun();
@@ -60,6 +59,9 @@ namespace Drone
             EnergyDrain();
             EnergyRecovery();
             EnergyCheck();
+            //Bomb Methods
+            base.Update();
+            BombCost();
         }
         void FixedUpdate()
         {
@@ -194,5 +196,20 @@ namespace Drone
                     _playerRunSpeed = playerInitialRunSpeed;
                 }    
             }    
-    }
+    
+
+        void BombCost()
+        {
+            if (bombExploded == 1)
+            {
+                energy -= maxEnergy * 0.7f;
+                bombExploded = 0;
+            }
+            else if (bombExploded == 2)
+            {
+                energy -= maxEnergy * 0.9f;
+                bombExploded = 0;
+            }
+        }
+}
 }

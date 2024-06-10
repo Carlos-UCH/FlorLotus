@@ -30,14 +30,11 @@ public class BombExplosion : MonoBehaviour
                 StartCoroutine(Activate(e));
             }
         }
-
+        Destroy(gameObject,6);
     }
-
     private IEnumerator Activate(Collider2D other)
     {
         yield return new WaitForSeconds(5);
         other.GetComponent<MonoBehaviour>().enabled = true;
-        Destroy(gameObject);
-
     }
 }
