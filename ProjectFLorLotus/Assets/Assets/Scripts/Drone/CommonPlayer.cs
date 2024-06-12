@@ -13,7 +13,7 @@ namespace Drone
         [SerializeField] public float energy;
         [SerializeField] public float maxEnergy;
         [SerializeField] public Image energyBar;
-        private bool playerIsRunning;
+        public bool playerIsRunning;
         private bool playerIsWalking;
         [SerializeField] private float walkingCost;
         [SerializeField] private float runningCost;
@@ -21,8 +21,8 @@ namespace Drone
         public float _playerSpeed;
         private Rigidbody2D _playerRigidbody2D;
         private Animator _playerAnimator;
-        private float _playerInitialSpeed;
-        private float playerInitialRunSpeed;
+        public float _playerInitialSpeed;
+        public float playerInitialRunSpeed;
         public float _playerRunSpeed;
         private Vector2 _playerDirection;
         private int collcheck;
