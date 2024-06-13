@@ -5169,3 +5169,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionRadius: 2
   bombParticle: {fileID: 6843953937037969395}
+  sfx: {fileID: 8300000, guid: ab001e9be9f1faa4a961767834aebdbf, type: 3}

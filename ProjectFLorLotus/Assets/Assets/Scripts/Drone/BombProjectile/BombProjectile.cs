@@ -11,7 +11,7 @@ public class BombProjectile : MonoBehaviour
     [SerializeField] protected GameObject bombPrefab2;
     protected int bombExploded;
  
-    protected void BombPlacing()
+    public virtual void BombPlacing()
     {
         if (!isOnGround && Input.GetKeyDown(KeyCode.Z))
                 {

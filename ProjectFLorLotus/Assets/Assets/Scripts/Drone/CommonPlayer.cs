@@ -34,13 +34,15 @@ namespace Drone
         private Vector2 _playerDirection;
         private int collcheck;
         private InventoryManager inventoryManager;
+        [SerializeField] protected GameObject walkingPrefab;
+        [SerializeField] protected GameObject runningPrefab;
+        private GameObject currentSound, currentSound2;
 
         /*************************
         * MONOBEHAVIOUR FUNCTIONS *
         *************************/
         protected void Start()
         {
-            
             _playerRigidbody2D = GetComponent<Rigidbody2D>();
             _playerAnimator = GetComponent<Animator>();
             _playerInitialSpeed = _playerSpeed;
@@ -62,6 +64,9 @@ namespace Drone
             //Bomb Methods
             BombPlacing();
             BombCost();
+            //AudioControl
+            AudioController();
+          
         }
         void FixedUpdate()
         {
@@ -102,6 +107,7 @@ namespace Drone
             {
                 _playerAnimator.SetInteger("Movement", direction());
                 playerIsWalking = true;
+                
             }
             else
             {
@@ -136,8 +142,9 @@ namespace Drone
         void PlayerDie()
         {
             if (health <= 0)
-        {   GetComponent<CommonPlayer>().enabled = false;
-            Destroy(gameObject, 1.0f);
+        {   
+            GetComponent<CommonPlayer>().enabled = false;
+            gameObject.tag = "DeadPlayer";
         }
 
         }
@@ -165,7 +172,7 @@ namespace Drone
                     {
                         if (playerIsWalking)
                             {
-                                energy -= walkingCost * Time.deltaTime;            
+                                energy -= walkingCost * Time.deltaTime;
                             }
                         if (playerIsRunning)
                             {
@@ -173,7 +180,7 @@ namespace Drone
                             }
                     }
             }        
-        void EnergyRecovery()
+        public void EnergyRecovery()
             {
                 if (!playerIsWalking && energy < maxEnergy)
                     {
@@ -196,9 +203,7 @@ namespace Drone
                     _playerRunSpeed = playerInitialRunSpeed;
                 }    
             }    
-    
-
-        private void BombCost()
+        public virtual void BombCost()
         {
             if (bombExploded == 1)
             {
@@ -211,5 +216,26 @@ namespace Drone
                 bombExploded = 0;
             }
         }
+
+        public void AudioController()
+        {
+            if (playerIsWalking && !playerIsRunning && energy > walkingCost  && currentSound == null)
+            {
+                Destroy(currentSound2);
+                currentSound = Instantiate(walkingPrefab, transform.position, Quaternion.identity);
+            }
+            else if (playerIsRunning && energy > runningCost && currentSound2 == null)
+            {
+                Destroy(currentSound);
+                currentSound2 = Instantiate(runningPrefab, transform.position, Quaternion.identity);
+            }
+            if (!playerIsWalking || gameObject.GetComponent<MonoBehaviour>().enabled == false)
+            {
+                Destroy(currentSound);
+                Destroy(currentSound2);
+            }
+        }
+     
+     
 }
 }

@@ -5002,6 +5002,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionRadius: 4
   bombParticle: {fileID: 6843953937037969395}
+  sfx: {fileID: 8300000, guid: ad7d7a89cf50d0e468864ec4960f1fd2, type: 3}
+  sfx2: {fileID: 8300000, guid: 38198b4a72c1dc24a976568f0b5c0607, type: 3}
 --- !u!1 &8317856013774886749
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class BombExplosion : MonoBehaviour
     [SerializeField] protected float explosionRadius;
     [SerializeField] private ParticleSystem bombParticle = default;
     private bool alreadyExploded;
+    [SerializeField] AudioClip sfx,sfx2;
 
     void Update()
     {
@@ -20,8 +21,8 @@ public class BombExplosion : MonoBehaviour
     void Explode()
     {
         alreadyExploded = true;
-        inBombRadius = Physics2D.OverlapCircleAll(transform.position, explosionRadius
-);
+        inBombRadius = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+        AudioSource.PlayClipAtPoint(sfx,transform.position);
         bombParticle.Play();
         foreach (Collider2D e in inBombRadius)
         {
@@ -31,6 +32,7 @@ public class BombExplosion : MonoBehaviour
                 StartCoroutine(Activate(e));
             }
         }
+        AudioSource.PlayClipAtPoint(sfx2,transform.position);
         Destroy(gameObject,6);
     }
     private IEnumerator Activate(Collider2D other)

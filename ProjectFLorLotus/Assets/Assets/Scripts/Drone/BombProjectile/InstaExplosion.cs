@@ -9,7 +9,7 @@ public class InstaExplosion : MonoBehaviour
     [SerializeField] protected float explosionRadius;
     [SerializeField] private ParticleSystem bombParticle = default;
     private bool alreadyExploded;
-
+    [SerializeField] AudioClip sfx;
     void Update()
     {
         if (!alreadyExploded && Input.GetKeyDown(KeyCode.X))
@@ -22,6 +22,7 @@ public class InstaExplosion : MonoBehaviour
         alreadyExploded = true;
         inBombRadius = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         bombParticle.Play();
+        AudioSource.PlayClipAtPoint(sfx,transform.position);
         foreach (Collider2D e in inBombRadius)
         {
             if (e.CompareTag("Enemy"))
@@ -33,8 +34,7 @@ public class InstaExplosion : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, explosionRadius
-);
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 
 }

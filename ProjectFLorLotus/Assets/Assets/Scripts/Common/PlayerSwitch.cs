@@ -45,7 +45,7 @@ public class PlayerSwitch : MonoBehaviour
 
     void Update()
     {
-        if (playerController == null)
+        if (playerController.tag == "DeadPlayer")
         {
             SwitchCamera(player2Camera);
             player2Controller.enabled = true;
@@ -59,6 +59,13 @@ public class PlayerSwitch : MonoBehaviour
         {
             SwitchPlayer();
         }
+        playerController.BarModifiers();
+        player2Controller.BarModifiers();
+        playerController.EnergyRecovery();
+        player2Controller.EnergyRecovery();
+        playerController.AudioController();
+        player2Controller.AudioController();
+        
     }
 
 
