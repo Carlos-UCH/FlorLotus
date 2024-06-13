@@ -17,7 +17,8 @@ public bool isCollisionTrue = false;
 public float timeCount = 0.0f;
 [SerializeField] public float timeToHeal = 3.0f;
 [SerializeField] public float costToHeal;
-public GameObject healingEffect;public bool isHealActive ;
+public GameObject healingEffect;
+public bool isHealActive ;
  /*************************
     * MONOBEHAVIOUR METHODS *
   *************************/
