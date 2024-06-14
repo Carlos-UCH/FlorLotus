@@ -18424,7 +18424,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1344234742370962423, guid: 1eeb6bac1a49bbb4ba046f1ff4c8e89a, type: 3}
       propertyPath: health
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2189388310453613033, guid: 1eeb6bac1a49bbb4ba046f1ff4c8e89a, type: 3}
       propertyPath: m_Name
@@ -21546,9 +21546,35 @@ PrefabInstance:
       propertyPath: effect
       value: 
       objectReference: {fileID: 11400000, guid: 0fa938435ccd81fc38ed17073bc6db34, type: 2}
+    - target: {fileID: 8136774330495996649, guid: 217fc1bd5f1d509ed9818cd12f5b14c9, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f1e16997ace182719b39bc93960bd29f, type: 3}
+    - target: {fileID: 8136774330495996649, guid: 217fc1bd5f1d509ed9818cd12f5b14c9, type: 3}
+      propertyPath: itemName
+      value: Buff de Energia
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136774330495996649, guid: 217fc1bd5f1d509ed9818cd12f5b14c9, type: 3}
+      propertyPath: quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136774330495996649, guid: 217fc1bd5f1d509ed9818cd12f5b14c9, type: 3}
+      propertyPath: itemDescription
+      value: "Item que aumenta temporariamente a energia do personagem, permitindo
+        explorar mais \xE1reas do mapa sem se cansar. Ideal para cobrir longas dist\xE2ncias
+        e descobrir novos territ\xF3rios com efici\xEAncia.\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136774330495996649, guid: 217fc1bd5f1d509ed9818cd12f5b14c9, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 337398390}
     - target: {fileID: 8485649628009205886, guid: 217fc1bd5f1d509ed9818cd12f5b14c9, type: 3}
       propertyPath: m_Name
       value: EnergyBuff
+      objectReference: {fileID: 0}
+    - target: {fileID: 8485649628009205886, guid: 217fc1bd5f1d509ed9818cd12f5b14c9, type: 3}
+      propertyPath: m_TagString
+      value: Upgrade
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23275,9 +23301,35 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 546650444}
     m_Modifications:
+    - target: {fileID: 1521141481599568162, guid: d56c40dda875677aaa10a72672add1d3, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: -1891011986, guid: 4fc2d6690081d6c09959c115c2734b82, type: 3}
+    - target: {fileID: 1521141481599568162, guid: d56c40dda875677aaa10a72672add1d3, type: 3}
+      propertyPath: itemName
+      value: BombEx
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521141481599568162, guid: d56c40dda875677aaa10a72672add1d3, type: 3}
+      propertyPath: quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521141481599568162, guid: d56c40dda875677aaa10a72672add1d3, type: 3}
+      propertyPath: itemDescription
+      value: "Dispositivo crucial usado para desarmar bombas, garantindo a seguran\xE7a
+        em situa\xE7\xF5es de alto risco. Fundamental para neutralizar amea\xE7as
+        explosivas com rapidez e seguran\xE7a."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521141481599568162, guid: d56c40dda875677aaa10a72672add1d3, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 337398390}
     - target: {fileID: 4720724641991295896, guid: d56c40dda875677aaa10a72672add1d3, type: 3}
       propertyPath: m_Name
       value: LandmineDisabler
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720724641991295896, guid: d56c40dda875677aaa10a72672add1d3, type: 3}
+      propertyPath: m_TagString
+      value: Upgrade
       objectReference: {fileID: 0}
     - target: {fileID: 4772584131442831194, guid: d56c40dda875677aaa10a72672add1d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24451,9 +24503,35 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 66732734c65b7dac0bb615b69cfa3ad2, type: 3}
+    - target: {fileID: 8136774330495996649, guid: 217fc1bd5f1d509ed9818cd12f5b14c9, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 66732734c65b7dac0bb615b69cfa3ad2, type: 3}
+    - target: {fileID: 8136774330495996649, guid: 217fc1bd5f1d509ed9818cd12f5b14c9, type: 3}
+      propertyPath: itemName
+      value: Buff de Vida
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136774330495996649, guid: 217fc1bd5f1d509ed9818cd12f5b14c9, type: 3}
+      propertyPath: quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136774330495996649, guid: 217fc1bd5f1d509ed9818cd12f5b14c9, type: 3}
+      propertyPath: itemDescription
+      value: "Esse item aumenta temporariamente a vida do jogador. Perfeito para
+        enfrentar inimigos poderosos e garantir uma sobreviv\xEAncia prolongada nas
+        aventuras mais perigosas."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136774330495996649, guid: 217fc1bd5f1d509ed9818cd12f5b14c9, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 337398390}
     - target: {fileID: 8485649628009205886, guid: 217fc1bd5f1d509ed9818cd12f5b14c9, type: 3}
       propertyPath: m_Name
       value: HealthBuff
+      objectReference: {fileID: 0}
+    - target: {fileID: 8485649628009205886, guid: 217fc1bd5f1d509ed9818cd12f5b14c9, type: 3}
+      propertyPath: m_TagString
+      value: Upgrade
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -51193,6 +51271,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpeedBuff
       objectReference: {fileID: 0}
+    - target: {fileID: 3139109368439002271, guid: c215431bfad231a19bae62532c49be55, type: 3}
+      propertyPath: m_TagString
+      value: Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680117566568649428, guid: c215431bfad231a19bae62532c49be55, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 56e3110611db7a71b906a13406655534, type: 3}
+    - target: {fileID: 3680117566568649428, guid: c215431bfad231a19bae62532c49be55, type: 3}
+      propertyPath: itemName
+      value: Buff de Velocidade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680117566568649428, guid: c215431bfad231a19bae62532c49be55, type: 3}
+      propertyPath: quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680117566568649428, guid: c215431bfad231a19bae62532c49be55, type: 3}
+      propertyPath: itemDescription
+      value: "Esse item aumenta a velocidade de movimento do jogador. Ideal para
+        escapar rapidamente de situa\xE7\xF5es perigosas ou alcan\xE7ar objetivos
+        com mais efici\xEAncia."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680117566568649428, guid: c215431bfad231a19bae62532c49be55, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 337398390}
     - target: {fileID: 8815384286087989178, guid: c215431bfad231a19bae62532c49be55, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.0584793

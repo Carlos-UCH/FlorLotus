@@ -86,16 +86,16 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnLeftClick()
     {
-        if (thisItemSelected)
+        if (thisItemSelected && itemName != "Buff de Velocidade" && itemName != "Buff de Vida" && itemName != "Buff de Energia" && itemName != "BombEx")
         {
             inventoryManager.UseItem(itemName);
-            this.quantity -=1;
+            this.quantity -= 1;
             quantityText.text = this.quantity.ToString();
 
             if (this.quantity <= 0)
-        {
-            EmptySlot();
-        }
+            {
+                EmptySlot();
+            }
 
         }
 
@@ -110,7 +110,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
             itemDescriptionImage.sprite = emptySprite;
         }
     }
-
     private void EmptySlot()
     {
         quantityText.enabled = false;
@@ -126,6 +125,10 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public void OnRightClick()
     {
         //Create New Item
+        if (itemName == "Buff de Velocidade" || itemName == "Buff de Vida" || itemName == "Buff de Energia" || itemName == "Neutralizador de Explosivos")
+        {
+            return;
+        }
         GameObject itemToDrop = new GameObject(itemName);
         Item newItem = itemToDrop.AddComponent<Item>();
         newItem.quantity = 1;
@@ -152,7 +155,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
             EmptySlot();
         }
     }
-
     public bool IsFull()
     {
         return this.quantity >= this.maxNumberOfItems;
