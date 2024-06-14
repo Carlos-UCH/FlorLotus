@@ -90,12 +90,14 @@ public class PlayerSwitch : MonoBehaviour
         {
             playerController.enabled = false;
             player2Controller.enabled = true;
+            GameObject.Find("FOV").GetComponent<PlayerFOV>().enabled = false;
             SwitchCamera(player2Camera);
         }
         else
         {
             playerController.enabled = true;
             player2Controller.enabled = false;
+            GameObject.Find("FOV").GetComponent<PlayerFOV>().enabled = true;
             SwitchCamera(MainCamera);
 
         }
