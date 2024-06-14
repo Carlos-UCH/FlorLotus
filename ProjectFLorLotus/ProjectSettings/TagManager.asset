@@ -9,6 +9,7 @@ TagManager:
   - Enemy1
   - Collider
   - Upgrade
+  - DeadPlayer
   layers:
   - Default
   - TransparentFX

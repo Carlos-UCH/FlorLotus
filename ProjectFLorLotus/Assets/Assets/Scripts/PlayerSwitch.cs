@@ -44,7 +44,7 @@ public class PlayerSwitch : MonoBehaviour
 
     void Update()
     {
-        if (playerController == null)
+        if (playerController.tag == "DeadPlayer")
         {
             SwitchCamera(player2Camera);
             player2Controller.enabled = true;
@@ -58,6 +58,13 @@ public class PlayerSwitch : MonoBehaviour
         {
             SwitchPlayer();
         }
+        playerController.BarModifiers();
+        player2Controller.BarModifiers();
+        playerController.EnergyRecovery();
+        player2Controller.EnergyRecovery();
+        playerController.AudioController();
+        player2Controller.AudioController();
+        
     }
 
 
@@ -83,12 +90,14 @@ public class PlayerSwitch : MonoBehaviour
         {
             playerController.enabled = false;
             player2Controller.enabled = true;
+            GameObject.Find("FOV").GetComponent<PlayerFOV>().enabled = false;
             SwitchCamera(player2Camera);
         }
         else
         {
             playerController.enabled = true;
             player2Controller.enabled = false;
+            GameObject.Find("FOV").GetComponent<PlayerFOV>().enabled = true;
             SwitchCamera(MainCamera);
 
         }
