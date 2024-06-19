@@ -43,7 +43,10 @@ public class EnemyGenericFOV : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            this.AlertEntityVanished();
+            if (this.entityInSight != null)
+            {
+                this.AlertEntityVanished();
+            }
         }
     }
 

@@ -43,14 +43,17 @@ namespace Shooter
         {
             if (other.gameObject.CompareTag("Player"))
             {
+                FindObjectOfType<AudioManager>().ToggleBattleMusic();
                 stateController.SwitchState(new AttackState(this, stateController, other.gameObject.GetComponent<CommonPlayer>()));
             }
         }
 
         void OnTriggerExit2D(Collider2D other)
         {
+            AudioManager audioManager = FindObjectOfType<AudioManager>();
             if (other.gameObject.CompareTag("Player"))
-            {
+            {   
+                audioManager.ToggleBattleMusic();
                 stateController.SwitchState(patrolState);
             }
         }

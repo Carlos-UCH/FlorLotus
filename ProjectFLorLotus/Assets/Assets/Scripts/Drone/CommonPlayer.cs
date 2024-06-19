@@ -219,21 +219,21 @@ namespace Drone
 
         public void AudioController()
         {
-            if (playerIsWalking && !playerIsRunning && energy > walkingCost  && currentSound == null)
-            {
-                Destroy(currentSound2);
-                currentSound = Instantiate(walkingPrefab, transform.position, Quaternion.identity);
-            }
-            else if (playerIsRunning && energy > runningCost && currentSound2 == null)
-            {
-                Destroy(currentSound);
-                currentSound2 = Instantiate(runningPrefab, transform.position, Quaternion.identity);
-            }
-            if (!playerIsWalking || gameObject.GetComponent<MonoBehaviour>().enabled == false)
-            {
-                Destroy(currentSound);
-                Destroy(currentSound2);
-            }
+            // if (playerIsWalking && !playerIsRunning && energy > walkingCost  && currentSound == null)
+            // {
+            //     Destroy(currentSound2);
+            //     currentSound = Instantiate(walkingPrefab, transform.position, Quaternion.identity);
+            // }
+            // else if (playerIsRunning && energy > runningCost && currentSound2 == null)
+            // {
+            //     Destroy(currentSound);
+            //     currentSound2 = Instantiate(runningPrefab, transform.position, Quaternion.identity);
+            // }
+            // if (!playerIsWalking || gameObject.GetComponent<MonoBehaviour>().enabled == false)
+            // {
+            //     Destroy(currentSound);
+            //     Destroy(currentSound2);
+            // }
         }
      
      

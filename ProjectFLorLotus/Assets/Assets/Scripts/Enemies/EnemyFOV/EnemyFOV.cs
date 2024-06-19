@@ -56,9 +56,10 @@ public class EnemyFOV : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
         {
-            if (fov.IsTargetInSight(other.transform) && EnemyObject.GetComponent<Enemy.Enemy>().stateController.currentState == EnemyObject.GetComponent<Enemy.Enemy>().patrolState)
+            if (fov.IsTargetInSight(other.transform) &&
+             EnemyObject.GetComponent<Enemy.Enemy>().stateController.currentState == EnemyObject.GetComponent<Enemy.Enemy>().patrolState)
             {
-                EnemyObject.GetComponent<Enemy.Enemy>().stateController.SwitchState(new Enemy.ChaseState(EnemyObject.GetComponent<Enemy.Enemy>(), EnemyObject.GetComponent<Enemy.Enemy>().stateController, other.gameObject.GetComponent<Drone.CommonPlayer>()));
+                EnemyObject.GetComponent<Enemy.Enemy>().stateController.SwitchState(new ChaseState(EnemyObject.GetComponent<Enemy.Enemy>(), EnemyObject.GetComponent<Enemy.Enemy>().stateController, other.gameObject.GetComponent<Drone.CommonPlayer>()));
             }
             else if (!fov.IsTargetInSight(other.transform) && EnemyObject.GetComponent<Enemy.Enemy>().stateController.currentState.GetType() == typeof(ChaseState))
             {
