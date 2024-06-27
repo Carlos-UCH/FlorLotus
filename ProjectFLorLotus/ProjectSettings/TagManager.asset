@@ -12,6 +12,7 @@ TagManager:
   - DeadPlayer
   - wall
   - trapc
+  - Boss
   layers:
   - Default
   - TransparentFX
