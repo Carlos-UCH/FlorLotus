@@ -63,8 +63,7 @@ namespace Shooter
             stateController.currentState.PhysicsUpdate();
             currentPosition = transform.position;
             movementDelta = currentPosition - previousPosition;
-            Debug.Log(movementDelta);
-            ;
+            
             previousPosition = currentPosition;
             //float GetMovementValue(float value)
             //{

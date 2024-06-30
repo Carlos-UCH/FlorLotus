@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8978210540787763155}
   - component: {fileID: 7564645279024099247}
   - component: {fileID: 6929898105680797269}
+  - component: {fileID: -2270671360483090239}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Collider
@@ -163,6 +164,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   facingDirection: {x: 1, y: 0, z: 0}
+  _EnemySpeed: 0
+--- !u!95 &-2270671360483090239
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565648472544773725}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 17426d2d0f1cb03468735f55060cfebf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &7665377956934060081
 PrefabInstance:
   m_ObjectHideFlags: 0
