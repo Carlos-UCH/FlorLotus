@@ -5,7 +5,8 @@ using UnityEngine;
 public class ChaveSalaBoss : MonoBehaviour
 {
     public GameObject key;
-    public GameObject porta;
+    public GameObject porta1;
+    public GameObject porta2;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,8 @@ public class ChaveSalaBoss : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collisioninfo)
     {
             Destroy(key);
-            Destroy(porta);
+            Destroy(porta1);
+            Destroy(porta2);
 
     }
 }
