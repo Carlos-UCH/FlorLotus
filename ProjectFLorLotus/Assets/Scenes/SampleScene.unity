@@ -17142,6 +17142,7 @@ GameObject:
   - component: {fileID: 414555738}
   - component: {fileID: 414555739}
   - component: {fileID: 414555740}
+  - component: {fileID: 414555741}
   m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
@@ -17290,6 +17291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284e57f6ecd485088a80e6311f761661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _EnemySpeed: 0
   bullet: {fileID: 526927602354322700, guid: c21284e48b0684e508174a43d42c8f66, type: 3}
   shootingPower: 2
 --- !u!114 &414555739
@@ -17305,8 +17307,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodesQueue:
-  - {x: 0, y: 6.29, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 4.93, z: 0}
+  - {x: 0, y: -0.01, z: 0}
+  - {x: 1.68, y: -0.02, z: 0}
+  - {x: 1.69, y: 4.91, z: 0}
 --- !u!61 &414555740
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17352,6 +17356,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 15, y: 15}
   m_EdgeRadius: 0
+--- !u!95 &414555741
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414555731}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 17426d2d0f1cb03468735f55060cfebf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &419072496
 GameObject:
   m_ObjectHideFlags: 0

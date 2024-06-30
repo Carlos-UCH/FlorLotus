@@ -66,6 +66,14 @@ namespace Drone
             BombCost();
             //AudioControl
             AudioController();
+            //animação
+            Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"),0f);
+
+            _playerAnimator.SetFloat("Horizontal", movement.x);
+            _playerAnimator.SetFloat("Vertical", movement.y);
+            _playerAnimator.SetFloat("Speed", movement.magnitude);
+
+            transform.position = transform.position + movement * _playerSpeed * Time.deltaTime;
           
         }
         void FixedUpdate()
