@@ -165,8 +165,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  shootingEnemy: {fileID: 7279685446675551305, guid: ee8cd01bedba9eb45961f68320f4374c, type: 3}
-  meleeEnemy: {fileID: 1565648472544773725, guid: 8d51e79b88bb1e34584b5dd70cab7f35, type: 3}
+  shootingEnemy: {fileID: 6407912307491097105, guid: ee8cd01bedba9eb45961f68320f4374c, type: 3}
+  meleeEnemy: {fileID: 6328927487669172207, guid: 7e0a5a57561629a4582463da0f845b97, type: 3}
   turretBoss: {fileID: 2814009505132973346, guid: 200c5db4654c478658e9b77110cacd3a, type: 3}
   dumPrefab: {fileID: 4964482539094995371, guid: 6b7443828fc9fc44189debc75915575b, type: 3}
   deathPrefab: {fileID: 4781302556747372994, guid: 895e50f1db0efef47b824326a7a36073, type: 3}

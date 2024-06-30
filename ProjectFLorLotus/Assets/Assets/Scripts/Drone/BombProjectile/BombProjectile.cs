@@ -18,14 +18,14 @@ public class BombProjectile : MonoBehaviour
                 bombExploded = 1;
                 isOnGround = true;
                 bombObject = Instantiate(bombPrefab);
-                bombObject.transform.position = GameObject.FindWithTag("Player").transform.position + new Vector3(1,0,0);
+                bombObject.transform.position = GameObject.Find("PlayerClass").transform.position + new Vector3(1,0,0);
                 }
         if (!isOnGround && Input.GetKeyDown(KeyCode.T))
             {
             bombExploded = 1;
             isOnGround = true;
             bombObject = Instantiate(bombPrefab2);
-            bombObject.transform.position = GameObject.FindWithTag("Player").transform.position + new Vector3(1,0,0);
+            bombObject.transform.position = GameObject.Find("PlayerClass").transform.position + new Vector3(1,0,0);
             }
         
         if (bombObject == null)

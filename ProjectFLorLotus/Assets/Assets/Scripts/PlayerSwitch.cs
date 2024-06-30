@@ -11,6 +11,7 @@ public class PlayerSwitch : MonoBehaviour
     public CinemachineVirtualCamera[] cameras;
     public CinemachineVirtualCamera MainCamera;
     public CinemachineVirtualCamera player2Camera;
+    [SerializeField] private GameObject restartCanvas;
 
     public CinemachineVirtualCamera startingCamera;
     private CinemachineVirtualCamera currrentCam;
@@ -44,14 +45,17 @@ public class PlayerSwitch : MonoBehaviour
 
     void Update()
     {
+        RestartScene();
         if (playerController.tag == "DeadPlayer")
         {
             SwitchCamera(player2Camera);
+            GameObject.Find("FOV").GetComponent<PlayerFOV>().enabled = false;
             player2Controller.enabled = true;
         }
-        else if (player2Controller == null)
+        else if (player2Controller.tag == "DeadPlayer")
         {
             SwitchCamera(MainCamera);
+            GameObject.Find("FOV").GetComponent<PlayerFOV>().enabled = true;
             playerController.enabled = true;
         }
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -102,7 +106,15 @@ public class PlayerSwitch : MonoBehaviour
 
         }
     }
+    public void RestartScene()
+    {
+     if (player2Controller.tag == "DeadPlayer" && playerController.tag == "DeadPlayer")
+        {
+            restartCanvas.SetActive(true);
+            Time.timeScale = 0;
+          
+    }
 }
-
+}
 
 
