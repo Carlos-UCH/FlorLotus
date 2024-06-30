@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using Drone;
-using UnityEngine.SceneManagement;
 
 
 public class PlayerSwitch : MonoBehaviour
@@ -16,7 +15,7 @@ public class PlayerSwitch : MonoBehaviour
     public CinemachineVirtualCamera startingCamera;
     private CinemachineVirtualCamera currrentCam;
 
-    [SerializeField] private GameObject restartCanvas;
+
 
     public CommonPlayer playerController;
     public CommonPlayer player2Controller;
@@ -45,7 +44,6 @@ public class PlayerSwitch : MonoBehaviour
 
     void Update()
     {
-        RestartScene();
         if (playerController.tag == "DeadPlayer")
         {
             SwitchCamera(player2Camera);
@@ -104,17 +102,6 @@ public class PlayerSwitch : MonoBehaviour
 
         }
     }
-
-    public void RestartScene()
-    {
-     if (player2Controller.tag == "DeadPlayer" && playerController.tag == "DeadPlayer")
-        {
-            restartCanvas.SetActive(true);
-            Time.timeScale = 0;
-          
-    }
-   
-}
 }
 
 

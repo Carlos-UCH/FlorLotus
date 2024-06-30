@@ -10,9 +10,6 @@ TagManager:
   - Collider
   - Upgrade
   - DeadPlayer
-  - wall
-  - trapc
-  - Boss
   layers:
   - Default
   - TransparentFX

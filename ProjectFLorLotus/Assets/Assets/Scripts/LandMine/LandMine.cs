@@ -19,6 +19,20 @@ public class LandMine : MonoBehaviour
         }
     }
 
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (other.transform.TryGetComponent<MineDisablingAbilityBuff.MineDisablingAbility>(out var mineDisablingAbility))
+            {
+                if (Input.GetKey(KeyCode.C))
+                {
+                    DisableLandMine();
+                }
+            }
+        }
+    }
+
     public void DetonateLandMine()
     {
         Instantiate(particleSystem, transform.position, Quaternion.identity);
@@ -26,4 +40,11 @@ public class LandMine : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void DisableLandMine()
+    {
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .6f);
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+        isEnabled = false;
+    }
 }

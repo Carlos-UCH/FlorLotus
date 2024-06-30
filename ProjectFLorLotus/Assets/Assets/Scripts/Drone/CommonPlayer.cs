@@ -207,12 +207,12 @@ namespace Drone
         {
             if (bombExploded == 1)
             {
-                energy -= 25;
+                energy -= maxEnergy * 0.7f;
                 bombExploded = 0;
             }
             else if (bombExploded == 2)
             {
-                energy -= 50;
+                energy -= maxEnergy * 0.9f;
                 bombExploded = 0;
             }
         }
