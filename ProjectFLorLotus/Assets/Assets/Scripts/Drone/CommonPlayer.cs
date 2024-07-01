@@ -213,14 +213,14 @@ namespace Drone
             }    
         public virtual void BombCost()
         {
-            if (bombExploded == 1)
+            if (bombExploded == 1 && energy > 40)
             {
-                energy -= maxEnergy * 0.7f;
+                energy -= 40;
                 bombExploded = 0;
             }
-            else if (bombExploded == 2)
+            else if (bombExploded == 2 && energy > 20)
             {
-                energy -= maxEnergy * 0.9f;
+                energy -= 20;
                 bombExploded = 0;
             }
         }
