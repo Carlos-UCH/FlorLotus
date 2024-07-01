@@ -8,6 +8,8 @@ public class PowerUp : MonoBehaviour
     public int quantity;
 
     public Sprite sprite;
+    [SerializeField] private GameObject messageUpgrade;
+
 
     [TextArea]
     public string itemDescription;
@@ -16,8 +18,14 @@ public class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+       if (collision.CompareTag("Player")){
+        Destroy(gameObject,2);
+        gameObject.SetActive(false);
         effect.Apply(collision.gameObject);
+        messageUpgrade.SetActive(true);
+        Invoke("DisableUpgradeMessage",1.5f);
+        }
+
 
         int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
         if (leftOverItems <= 0)
@@ -28,7 +36,11 @@ public class PowerUp : MonoBehaviour
         {
             quantity = leftOverItems;
         }
-
-
+     
+       }
+    
+    void DisableUpgradeMessage()
+    {
+        messageUpgrade.SetActive(false);
     }
 }

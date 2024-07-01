@@ -15,6 +15,7 @@ public class Boss : MonoBehaviour
     [SerializeField] protected int currentWave;
     [SerializeField] protected bool waveSpawned =false ;
     [SerializeField]private int numberofEnemies;
+    [SerializeField] private GameObject restartCanva;
     [SerializeField] protected AudioClip[] bossSounds;
     [SerializeField] protected bool perWaveChewch = false;
     private bool bossStarted = false;
@@ -115,10 +116,16 @@ public class Boss : MonoBehaviour
             audioSource.Stop();
             audioSource.clip = bossSounds[3];
             audioSource.Play();
-            Destroy(gameObject,7f);
+            Invoke("BossDeathScene", 7);
             }
 
         }
+    void BossDeathScene()
+    {
+        Time.timeScale = 0;
+        restartCanva.SetActive(true);
+        Destroy(gameObject);
+    }
 
     void EnemySpawn()
     {
