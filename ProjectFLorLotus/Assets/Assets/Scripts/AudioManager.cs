@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     [Header("---- Music ----")]
     public AudioClip backgroundMusic;
     public AudioClip battleMusic;
+    public AudioClip pauseMusic;
 
     // [Header("---- Music ----")]
     // public 
@@ -20,6 +21,8 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
+
+
         BattleManager battleManager = FindObjectOfType<BattleManager>();
 
         if (battleManager.IsInCombat() && this.music.clip == backgroundMusic)
