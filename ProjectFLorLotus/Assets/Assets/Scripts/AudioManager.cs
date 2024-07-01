@@ -21,13 +21,6 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-        if (this.music.clip != pauseMusic && PauseMenu.gameIsPaused)
-        {
-            this.music.volume = 1;
-            this.music.clip = pauseMusic;
-            this.music.Play();
-            return;
-        }
 
 
         BattleManager battleManager = FindObjectOfType<BattleManager>();
