@@ -24,4 +24,13 @@
 - **Desarmar Mina Terrestre:** `C`  
   _※ Necessário ter ferramenta de desarme no drone de suporte_
 
+## 📸 Gameplay
 
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1Ttxx58sY6o_IISZHlQiYsIqJVMmllmAt" width="45%" />
+  <img src="https://drive.google.com/uc?export=view&id=1PGXH9KZ_NSC15oLK4ePnx4MMl54SoyIU" width="45%" />
+</p>
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1ujiCrgsTVZ0iVjTtE3vef7SBGhn7O769" width="45%" />
+  <img src="https://drive.google.com/uc?export=view&id=1ocTV-oRv5XIbrh-LcEiGdXkbL7Q5mL3X" width="45%" />
+</p>
