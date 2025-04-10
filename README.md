@@ -9,7 +9,7 @@
 - **Movimentação:** `W`, `A`, `S`, `D`
 - **Correr:** `Shift`
 - **Inventário:** `I`
-- **Lanterna:** Botão do mouse
+- **Lanterna:** Movimentar mouse
 - **Bomba Instakill:** `T`
 - **Bomba Imobilização:** `Z`
 - **Detonar Bomba:** `X`
